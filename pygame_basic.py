@@ -13,6 +13,14 @@ pygame.display.set_caption("Nado Game") # 게임 이름
 # 배경 이미지 불러오기
 background = pygame.image.load("background.png")
 
+# 캐릭터(스프라이트) 불러오기
+character = pygame.image.load("character.png")
+character_size = character.get_rect().size # 이미지의 (가로,세로) 크기를 얻음
+character_width = character_size[0] # 캐릭터의 가로 크기(140)
+character_height = character_size[1] # 캐릭터의 세로 크기(190)
+character_x_pos = screen_width / 2 - character_width / 2 # 화면 가로의 절반 크기에 위치
+character_y_pos = screen_height - character_height # 화면 세로 크기 가장 아래에 위치
+
 # 이벤트 루프
 running = True # 게임이 진행중인가를 확인
 
@@ -21,8 +29,9 @@ while running:
 		if event.type == pygame.QUIT: # 오른쪽 상단 x버튼을 누르면 종료
 			running = False
 
-	#screen.fill((0, 0, 255)) # 배경그리기 .fill((r,g,b))
 	screen.blit(background, (0, 0)) # 배경그리기 .blit(배경사진, (가로, 세로))
+
+	screen.blit(character, (character_x_pos, character_y_pos))
 
 	pygame.display.update() # 게임 화면을 계속해서 다시 그리기!
 
